@@ -58,10 +58,11 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #004f9f 0%, #041e42 100%);
-            color: white !important;
+            background-color: #f0f9ff; /* Light background to ensure contrast */
+            color: #1c1c1b; /* Dark text */
             padding: 80px 0;
             text-align: center;
+            border-bottom: 1px solid #e1e1e1;
         }
 
         .hero h1 {
@@ -69,14 +70,14 @@
             font-weight: 700;
             margin-bottom: 20px;
             line-height: 1.2;
-            color: white !important;
+            color: #004f9f; /* Brand Blue */
         }
 
         .hero .subtitle {
             font-size: 1.5rem;
             margin-bottom: 15px;
             opacity: 0.95;
-            color: white !important;
+            color: #041e42; /* Dark Navy */
         }
 
         .hero .tagline {
@@ -84,7 +85,7 @@
             font-style: italic;
             margin-bottom: 40px;
             opacity: 0.9;
-            color: white !important;
+            color: #38363d; /* Dark Grey */
         }
 
         .cta-button {
@@ -146,6 +147,8 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             border-top: 4px solid #009ab0;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* Ensure text inside cards is always dark, even if parent changes */
+            color: #1c1c1b; 
         }
 
         .feature-card:hover {
@@ -206,6 +209,7 @@
             border-radius: 8px;
             border-left: 5px solid #9f35b8;
             box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+            color: #1c1c1b;
         }
 
         /* License Section */
@@ -216,6 +220,7 @@
             padding: 40px;
             border-radius: 8px;
             border: 2px solid #004f9f;
+            color: #1c1c1b;
         }
 
         .license-box h3 {
@@ -235,14 +240,16 @@
 
         /* Stats Section */
         .stats {
-            background: #041e42;
-            color: white !important;
+            background-color: #f9f9f9; /* Light Grey Background */
+            color: #1c1c1b !important; /* Dark Text */
             padding: 60px 0;
             text-align: center;
+            border-top: 1px solid #e1e1e1;
+            border-bottom: 1px solid #e1e1e1;
         }
 
         .stats h2 {
-            color: white !important;
+            color: #004f9f !important; /* Blue Heading */
         }
 
         .stats-grid {
@@ -254,13 +261,13 @@
 
         .stat-item {
             padding: 20px;
-            color: white !important;
+            color: #1c1c1b !important;
         }
 
         .stat-number {
             font-size: 3rem;
             font-weight: 700;
-            color: #009ab0 !important;
+            color: #004f9f !important; /* Blue Numbers */
             display: block;
             margin-bottom: 10px;
         }
@@ -268,46 +275,87 @@
         .stat-label {
             font-size: 1.1rem;
             opacity: 0.9;
-            color: white !important;
+            color: #38363d !important; /* Dark Grey Label */
         }
 
         /* CTA Section */
         .cta-section {
-            background: linear-gradient(135deg, #041e42 0%, #004f9f 100%);
-            color: white !important;
+            background-color: #e6f7ff; /* Light Blue Background */
+            color: #1c1c1b !important;
             padding: 80px 0;
             text-align: center;
         }
 
         .cta-section h2 {
-            color: white !important;
+            color: #004f9f !important;
             margin-bottom: 20px;
         }
 
-        .cta-section p {
+        .cta-section p.intro {
             font-size: 1.2rem;
             margin-bottom: 40px;
             opacity: 0.95;
-            color: white !important;
+            color: #1c1c1b !important;
+        }
+
+        /* New Class to Fix the White Text Issue */
+        .access-card {
+            background: white;
+            color: #1c1c1b !important; /* Forces dark text specifically for this card */
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+        
+        .access-card h3 {
+            color: #004f9f !important;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        .access-card p {
+            color: #1c1c1b !important;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .access-buttons {
+            text-align: center; 
+            margin-top: 30px;
         }
 
         .cta-button-secondary {
             display: inline-block;
-            background: white;
-            color: #004f9f;
-            padding: 18px 40px;
-            font-size: 1.1rem;
+            background: #004f9f; /* Changed to Blue for contrast inside white card */
+            color: white !important;
+            padding: 15px 35px;
             font-weight: 600;
             text-decoration: none;
             border-radius: 6px;
+            margin: 10px 5px;
             transition: all 0.3s ease;
         }
 
-        .cta-button-secondary:hover {
-            background: #c8c6c5;
-            color: #004f9f;
-            transform: translateY(-2px);
+        .cta-button-info {
+            display: inline-block;
+            background: #38363d;
+            color: white !important;
+            padding: 15px 35px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 10px 5px;
         }
+
+        .cta-button-secondary:hover, .cta-button-info:hover {
+             transform: translateY(-2px);
+             opacity: 0.9;
+        }
+
 
         /* Footer */
         footer {
@@ -357,6 +405,10 @@
 
             .stat-number {
                 font-size: 2.5rem;
+            }
+            
+            .access-card {
+                padding: 25px;
             }
         }
     </style>
@@ -523,24 +575,24 @@
     <section class="cta-section" id="acceso">
         <div class="container">
             <h2>Acceso al Material</h2>
-            <p style="font-size: 1.3rem; margin-bottom: 30px; color: white;">
+            <p class="intro">
                 Este recurso está disponible <strong>exclusivamente para socios de buildingSMART Spain</strong>.
             </p>
 
-            <div style="background: white; color: #1c1c1b; padding: 40px; border-radius: 10px; max-width: 700px; margin: 0 auto; text-align: left; box-shadow: 0 8px 30px rgba(0,0,0,0.2);">
-                <h3 style="color: #004f9f; margin-bottom: 20px; text-align: center; font-size: 1.5rem;">¿Cómo acceder?</h3>
+            <div class="access-card">
+                <h3>¿Cómo acceder?</h3>
 
-                <p style="margin-bottom: 15px; line-height: 1.8; color: #1c1c1b;">
+                <p>
                     <strong>Si eres socio:</strong> El material completo está disponible en el canal de Microsoft Teams de buildingSMART Spain. Busca la carpeta "Taller IDS LITE" en la sección de recursos formativos.
                 </p>
 
-                <p style="margin-bottom: 20px; line-height: 1.8; color: #1c1c1b;">
+                <p>
                     <strong>Si aún no eres socio:</strong> Descubre las ventajas de formar parte de la comunidad buildingSMART Spain y accede a este y otros recursos exclusivos.
                 </p>
 
-                <div style="text-align: center; margin-top: 30px;">
-                    <a href="https://www.buildingsmart.es/bssp/hazte-socio/" style="display: inline-block; background: #004f9f; color: white; padding: 15px 35px; text-decoration: none; border-radius: 6px; font-weight: 600; margin: 10px 5px;">Hazte socio</a>
-                    <a href="mailto:info@buildingsmart.es" style="display: inline-block; background: #38363d; color: white; padding: 15px 35px; text-decoration: none; border-radius: 6px; font-weight: 600; margin: 10px 5px;">Más información</a>
+                <div class="access-buttons">
+                    <a href="https://www.buildingsmart.es/bssp/hazte-socio/" class="cta-button-secondary">Hazte socio</a>
+                    <a href="mailto:info@buildingsmart.es" class="cta-button-info">Más información</a>
                 </div>
             </div>
         </div>
@@ -552,7 +604,7 @@
             <p><strong>Material preparado por buildingSMART Spain</strong></p>
             <p>Versión: LITE (agnóstico a rol y fase) | v1.0</p>
             <p style="margin-top: 20px;">
-                <a href="https://www.buildingsmart.es">buildingsmart.es</a> |
+                <a href="https://www.buildingsmart.es">buildingsmart.es</a> | 
                 <a href="mailto:info@buildingsmart.es">info@buildingsmart.es</a>
             </p>
             <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
