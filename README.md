@@ -28,7 +28,7 @@ Este sitio presenta un paquete completo de materiales para aprender y enseñar e
 
 ## Licencia
 
-**Landing page:** © 2024 buildingSMART Spain
+**Landing page:** © 2025 buildingSMART Spain
 
 **Material del taller:** Creative Commons Atribución 4.0 Internacional (CC BY 4.0)
 
