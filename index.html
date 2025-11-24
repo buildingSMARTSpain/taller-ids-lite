@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Taller IDS LITE - Recurso formativo para validación de requisitos de información BIM mediante IDS (Information Delivery Specification). Material de buildingSMART Spain.">
+    <meta name="keywords" content="IDS, IFC, BIM, buildingSMART, validación, requisitos, información, formación">
+    <title>Taller IDS LITE | buildingSMART Spain</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bsmart-blue: #004f9f;
+            --bsmart-red: #e5172a;
+            --bsmart-purple: #9f35b8;
+            --bsmart-turquoise: #009ab0;
+            --bsmart-black: #1c1c1b;
+            --bsmart-gray-light: #c8c6c5;
+            --bsmart-gray-dark: #38363d;
+            --bsmart-green: #48bf91;
+            --bsmart-navy: #041e42;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--bsmart-black);
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            border-bottom: 3px solid var(--bsmart-blue);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--bsmart-blue);
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--bsmart-blue) 0%, var(--bsmart-turquoise) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            opacity: 0.95;
+        }
+
+        .hero .tagline {
+            font-size: 1.25rem;
+            font-style: italic;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--bsmart-red);
+            color: white;
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(229, 23, 42, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #c41323;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(229, 23, 42, 0.4);
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+        }
+
+        section:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--bsmart-blue);
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--bsmart-navy);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--bsmart-turquoise);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Content List */
+        .content-list {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .content-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-list li {
+            padding: 15px 0 15px 40px;
+            border-bottom: 1px solid var(--bsmart-gray-light);
+            position: relative;
+        }
+
+        .content-list li:last-child {
+            border-bottom: none;
+        }
+
+        .content-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--bsmart-green);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        /* Audience Section */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .audience-item {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 5px solid var(--bsmart-purple);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+        }
+
+        /* License Section */
+        .license-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+            padding: 40px;
+            border-radius: 8px;
+            border: 2px solid var(--bsmart-blue);
+        }
+
+        .license-box h3 {
+            color: var(--bsmart-blue);
+            margin-bottom: 20px;
+        }
+
+        .license-badge {
+            display: inline-block;
+            background: var(--bsmart-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--bsmart-navy);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .stats h2 {
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--bsmart-turquoise);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--bsmart-turquoise) 0%, var(--bsmart-green) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .cta-button-secondary {
+            display: inline-block;
+            background: white;
+            color: var(--bsmart-blue);
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button-secondary:hover {
+            background: var(--bsmart-gray-light);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bsmart-gray-dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 10px 0;
+            opacity: 0.9;
+        }
+
+        footer a {
+            color: var(--bsmart-turquoise);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .content-list {
+                padding: 25px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo">buildingSMART Spain</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Taller IDS LITE</h1>
+            <p class="subtitle">Validación de Requisitos de Información BIM</p>
+            <p class="tagline">"Recibes un dataset. Debes auditarlo."</p>
+            <a href="#acceso" class="cta-button">Acceder al Material</a>
+        </div>
+    </section>
+
+    <!-- What is it Section -->
+    <section>
+        <div class="container">
+            <h2>¿Qué es el Taller IDS LITE?</h2>
+            <p style="text-align: center; font-size: 1.2rem; max-width: 800px; margin: 0 auto 40px;">
+                Un recurso formativo completo y listo para usar que te enseña a validar requisitos de información BIM mediante el estándar <strong>IDS (Information Delivery Specification)</strong> de buildingSMART.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Enfoque Horizontal</h3>
+                    <p>Válido para cualquier rol y fase del ciclo de vida del proyecto. El concepto es universal: recibir y auditar información.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Completo y Práctico</h3>
+                    <p>Incluye modelo IFC real, 6 especificaciones IDS funcionales y documentación de apoyo. Todo listo para empezar.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔓</div>
+                    <h3>Licencia Abierta</h3>
+                    <p>CC BY 4.0 - Úsalo, adáptalo y compártelo en tus formaciones comerciales con total libertad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <h2>El paquete incluye</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">Modelo IFC<br>de infraestructuras</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">Especificaciones IDS<br>completas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Documentos<br>de referencia</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Listo para usar<br>desde hoy</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section>
+        <div class="container">
+            <h2>Contenido del Paquete</h2>
+            <div class="content-list">
+                <h3>📂 Modelo IFC</h3>
+                <ul>
+                    <li>Modelo de infraestructuras IFC 4.3 con alineaciones, pilotes, señales, fustes y vigas</li>
+                    <li>Cedido por <strong>Buhodra Ingeniería, S.A.</strong> (desarrolladores de ISTRAM)</li>
+                </ul>
+
+                <h3 style="margin-top: 30px;">📋 6 Especificaciones IDS</h3>
+                <ul>
+                    <li><strong>Ejercicio 1 (Emisor):</strong> Georreferenciación, alineaciones y pilotes</li>
+                    <li><strong>Ejercicio 2 (Receptor):</strong> Señales, fustes y vigas con validación cuantitativa</li>
+                    <li>Listas para cargar en herramientas de validación como Bonsai BIM o IDS Maker</li>
+                </ul>
+
+                <h3 style="margin-top: 30px;">📚 Documentación de Apoyo</h3>
+                <ul>
+                    <li>Guía para participantes con objetivos de aprendizaje</li>
+                    <li>Checklist de validación IDS</li>
+                    <li>Checklist de requisitos IFC 4.3</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audience Section -->
+    <section>
+        <div class="container">
+            <h2>¿Para quién es este recurso?</h2>
+            <div class="audience-grid">
+                <div class="audience-item">
+                    <h3>🎓 Profesionales BIM</h3>
+                    <p>Aprende a validar requisitos de información y mejora tu flujo de trabajo de coordinación.</p>
+                </div>
+
+                <div class="audience-item">
+                    <h3>🏢 Empresas socias</h3>
+                    <p>Úsalo para formar a tus equipos internos o intégralo en tus servicios de formación comercial.</p>
+                </div>
+
+                <div class="audience-item">
+                    <h3>🎯 Formadores</h3>
+                    <p>Acelera la preparación de talleres con material estructurado y testado.</p>
+                </div>
+
+                <div class="audience-item">
+                    <h3>🔍 Equipos de control de calidad</h3>
+                    <p>Establece procesos de auditoría de información basados en estándares abiertos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- License Section -->
+    <section>
+        <div class="container">
+            <h2>Licencia y Uso</h2>
+            <div class="license-box">
+                <div class="license-badge">CC BY 4.0</div>
+                <h3>Creative Commons Atribución 4.0 Internacional</h3>
+                <p style="margin-bottom: 20px;">Este material puede ser usado libremente bajo las siguientes condiciones:</p>
+
+                <h3 style="font-size: 1.2rem; color: var(--bsmart-green);">✓ Puedes:</h3>
+                <ul style="margin-bottom: 20px; line-height: 1.8;">
+                    <li>Compartir y redistribuir en cualquier medio o formato</li>
+                    <li>Adaptar, transformar y crear a partir del material</li>
+                    <li>Usar para propósitos comerciales sin restricciones</li>
+                </ul>
+
+                <h3 style="font-size: 1.2rem; color: var(--bsmart-blue);">⚠ Solo debes:</h3>
+                <ul style="line-height: 1.8;">
+                    <li>Dar crédito a <strong>buildingSMART Spain</strong> como autor original</li>
+                    <li>Indicar si has realizado cambios al material</li>
+                </ul>
+
+                <p style="margin-top: 30px; font-size: 0.95rem; opacity: 0.8;">
+                    <strong>Nota:</strong> El modelo IFC ha sido cedido por Buhodra Ingeniería, S.A. para uso formativo. La autoría del modelo corresponde a la información contenida en sus atributos internos.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="acceso">
+        <div class="container">
+            <h2>Acceso al Material</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 30px;">
+                Este recurso está disponible <strong>exclusivamente para socios de buildingSMART Spain</strong>.
+            </p>
+
+            <div style="background: rgba(255,255,255,0.95); color: var(--bsmart-navy); padding: 40px; border-radius: 10px; max-width: 700px; margin: 0 auto; text-align: left;">
+                <h3 style="color: var(--bsmart-blue); margin-bottom: 20px; text-align: center;">¿Cómo acceder?</h3>
+
+                <p style="margin-bottom: 15px; line-height: 1.8;">
+                    <strong>Si eres socio:</strong> El material completo está disponible en el canal de Microsoft Teams de buildingSMART Spain. Busca la carpeta "Taller IDS LITE" en la sección de recursos formativos.
+                </p>
+
+                <p style="margin-bottom: 20px; line-height: 1.8;">
+                    <strong>Si aún no eres socio:</strong> Descubre las ventajas de formar parte de la comunidad buildingSMART Spain y accede a este y otros recursos exclusivos.
+                </p>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="https://www.buildingsmart.es/bssp/hazte-socio/" style="display: inline-block; background: var(--bsmart-blue); color: white; padding: 15px 35px; text-decoration: none; border-radius: 6px; font-weight: 600; margin-right: 10px;">Hazte socio</a>
+                    <a href="mailto:info@buildingsmart.es" style="display: inline-block; background: var(--bsmart-gray-dark); color: white; padding: 15px 35px; text-decoration: none; border-radius: 6px; font-weight: 600;">Más información</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>Material preparado por buildingSMART Spain</strong></p>
+            <p>Versión: LITE (agnóstico a rol y fase) | v1.0</p>
+            <p style="margin-top: 20px;">
+                <a href="https://www.buildingsmart.es">buildingsmart.es</a> |
+                <a href="mailto:info@buildingsmart.es">info@buildingsmart.es</a>
+            </p>
+            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
+                © 2024 buildingSMART Spain. Material bajo licencia CC BY 4.0
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
