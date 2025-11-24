@@ -17,7 +17,7 @@ Este sitio presenta un paquete completo de materiales para aprender y enseñar e
 ## Contenido del repositorio
 
 - `index.html` - Landing page responsive con paleta corporativa buildingSMART
-- `01_Materiales/` - Paquete completo del taller (IFC, IDS, documentación)
+- `01_Materiales/` - Paquete completo del taller (IFC, IDS, documentación) - Accesible en la intranet para socios de bS Spain
 
 ## Tecnología
 
